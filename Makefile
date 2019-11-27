@@ -1,32 +1,35 @@
-NAME := ft_printf
+NAME = libftprintf.a
 
-F_N := main
-FLAGS := -Wall -Wextra -Werror
+F_N = test ft_printf conversions fill_str get_flag
+OBJS = $(addprefix objects/, $(addsuffix .o, $(F_N)))
+FILES = $(addprefix fdf_srcs/, $(addsuffix .c, $(F_N)))
 
-OBJS := $(addprefix objects/, $(addsuffix .o $(F_N)))
-FILES := $(addprefix srcs/, $(addsuffix .c $(F_N)))
-LIB := libft
+LIB = libft
 
-LIB_LINK := -L $(LIB) -l ft
+LIB_LINK = -L $(LIB) -l ft
 
-INCL := -I libft/ -I incl/
+INCL = -I libft/
+FLAGS = -Wall -Wextra -Werror -g
 
-all : ($NAME)
+all : $(NAME)
 
-objects%.o : srcs/%.c
+objects/%.o : fdf_srcs/%.c
 	@/bin/mkdir -p objects
-	@gcc $(FLAGS) -c $(INCL) $< -o $@
+	@gcc $(FLAGS) -c $(INCL) $< -o $@ 
 
 $(NAME) : $(OBJS)
+	@echo  Making libft.. 
 	@make -C $(LIB)
-	@gcc $(LIB_LINK) $(OBJS) -o $(NAME)
+	@echo  Compiling..
+	@gcc $(LIB_LINK)$(OBJS) -o $(NAME)
+	@echo Done!
 
 clean :
 	@/bin/rm -rf objects
-	@make -C $(LIB) clean
+	@make -C $(LIB) clean 
 
 fclean : clean
 	@/bin/rm -rf $(NAME)
-	@make -C $(LIB) -fclean
+	@make -C $(LIB) fclean
 
 re : fclean all

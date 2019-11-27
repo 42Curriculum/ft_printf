@@ -1,0 +1,8 @@
+{
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.useTabStops": false,
+	"files.associations": {
+		"ios": "c"
+	}
+}
