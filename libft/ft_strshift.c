@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intsize.c                                       :+:      :+:    :+:   */
+/*   ft_strshift.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 11:47:38 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/05 05:12:43 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/12/02 02:45:51 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/12/05 03:40:12 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_intsize(long long nb, int base)
-{
-	int len;
+#include "incl/libft.h"
 
-	len = 1;
-	if (nb < 0)
-		nb *= -1;
-	while (nb >= base)
+void	ft_str_shift(char **str, int n_shift, char skip)
+{
+	char	*tmp;
+	int		i;
+	int		n;
+
+	i = 0;
+	n = 0;
+	tmp = ft_strdup(*str);
+	while (i < n_shift)
 	{
-		nb /= base;
-		len += 1;
+		(*str)[i] = skip;
+		i++;
 	}
-	return (len);
+	while (tmp[n] == skip)
+		n++;
+	while ((*str)[i])
+	{
+		(*str)[i] = tmp[n];
+		i++;
+		n++;
+	}
 }

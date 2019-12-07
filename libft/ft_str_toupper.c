@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intsize.c                                       :+:      :+:    :+:   */
+/*   ft_str_toupper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 11:47:38 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/05 05:12:43 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/11/28 16:46:51 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/11/28 16:50:27 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_intsize(long long nb, int base)
-{
-	int len;
+#include "incl/libft.h"
 
-	len = 1;
-	if (nb < 0)
-		nb *= -1;
-	while (nb >= base)
+char	*ft_str_toupper(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
 	{
-		nb /= base;
-		len += 1;
+		str[i] = ft_toupper(str[i]);
+		i++;
 	}
-	return (len);
+	return (str);
 }

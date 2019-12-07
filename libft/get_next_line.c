@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 16:49:46 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/11/04 16:06:46 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/05 22:14:25 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int		check_line(char *str)
 	return (FALSE);
 }
 
-static char	*cpy_nn(char **line, char **next_line)
+static char		*cpy_nn(char **line, char **next_line)
 {
 	int		i;
 	char	*temp;
@@ -73,7 +73,7 @@ static int		error_check(int fd, char **line, char *buffer, char **next_line)
 	return (TRUE);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	char		buffer[BUFF_SIZE + 1];
 	static char *next_line[FD_NOTMAX];

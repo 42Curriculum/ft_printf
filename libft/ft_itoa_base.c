@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/20 14:07:09 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/11/28 00:56:31 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/11/28 00:16:19 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/12/05 17:22:57 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int nbr)
+char		*ft_itoa_base(int value, int base)
 {
-	char			*str;
-	long long		n;
-	unsigned int	size;
+	int			len;
+	long long	nbr;
+	char		*str;
+	char		*s_base;
 
-	if (nbr == 0)
-		return (ft_strdup("0"));
-	n = (long long)nbr;
+	s_base = "0123456789abcdef";
+	if (value == 0)
+		return ("0");
+	len = (int)ft_intsize(value, base);
+	nbr = value;
 	if (nbr < 0)
-		n *= -1;
-	size = ft_intsize(n, 10) + (nbr < 0);
-	if (!(str = (char*)malloc(sizeof(char) * (size + 1))))
-		return (NULL);
-	if (nbr < 0)
-		str[0] = '-';
-	str[size] = '\0';
-	while (n > 0)
 	{
-		str[--size] = (char)(n % 10 + 48);
-		n /= 10;
+		if (base == 10)
+			len += 1;
+		nbr *= -1;
 	}
+	str = ft_strnew(len);
+	while (len > 0)
+	{
+		str[--len] = s_base[nbr % base];
+		nbr /= base;
+	}
+	if (value < 0 && base == 10)
+		str[0] = '-';
 	return (str);
 }

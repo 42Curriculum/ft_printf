@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 12:32:15 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/11/18 13:41:29 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/06 14:27:36 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putnbr(int nb);
 void				ft_putnbr_fd(int nb, int fd);
+void				ft_strdiv(char **str, int multiplier);
+void				ft_strmult(char **str, int multiplier, int i);
+void				ft_str_shift(char **str, int n_shift, char skip);
+void				ft_str_add(char **str, int add, int i);
 char				*ft_str_limitcpy(char *dest, char *src, int c, int i);
 size_t				ft_strlen(const char *str);
 int					ft_strarrlen(char **str);
@@ -75,7 +79,10 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_better_strjoin(char *str1, char *str2);
 char				*ft_strtrim(char	const *s);
 char				**ft_strsplit(const char *s, char c);
-char				*ft_itoa(int nb);
+char				*ft_itoa_base(int value, int base);
+char				*ft_ltoa_base(long long value, int base);
+char				*ft_str_toupper(char *str);
+char				*ft_str_tolower(char *str);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -84,7 +91,8 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-unsigned int		ft_intsize(int nb);
+unsigned int		ft_intsize(long long nb, int base);
+long long			ft_calc_exponent(int mult, int exp);
 void				ft_print2d(char **str, char c);
 int					ft_ctwords(const char *s, char c);
 void				ft_lstappend(t_list *lst, t_list *elem);

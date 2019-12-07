@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intsize.c                                       :+:      :+:    :+:   */
+/*   ft_calc_exponent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 11:47:38 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/05 05:12:43 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/11/30 16:18:06 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/12/01 19:25:27 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_intsize(long long nb, int base)
+long long	ft_calc_exponent(int mult, int exp)
 {
-	int len;
+	int			i;
+	long long	num;
+	int			sign;
 
-	len = 1;
-	if (nb < 0)
-		nb *= -1;
-	while (nb >= base)
+	sign = 1;
+	(exp > 0) ? (sign *= 1) : (sign *= -1);
+	exp *= sign;
+	num = mult;
+	i = 2;
+	if (exp == 0)
+		return (0);
+	else if (exp == 1 || mult == 1)
+		return (mult);
+	else
 	{
-		nb /= base;
-		len += 1;
+		while (i <= exp)
+		{
+			num *= num;
+			i++;
+		}
 	}
-	return (len);
+	return (mult *= sign);
 }

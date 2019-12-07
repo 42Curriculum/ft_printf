@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_str.c                                         :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/26 14:41:46 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/11/27 03:56:33 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/12/06 13:31:47 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_left(char **str, int precision, short flags, char *message)
+int		ft_printf(const char *str, ...)
 {
-	int i;
+	va_list argp;
+	int		i;
 
 	i = 0;
-	while (i < precision)
+	va_start(argp, str);
+	while (str[i])
 	{
-		if (0b0000001000000000 & flags)
-			(*str)[i] = '0';
+		if (str[i] == '%')
+		{
+			if (str[i + 1] == '%')
+				write(1, "%", 1);
+			else
+			{
+				i += read_chars((char *)(str + i), &argp, 0);
+			}
+		}
 		else
-			(*str)[i] = ' ';
-		i++;
+		{
+			write(1, &str[i], 1);
+			i++;
+		}
 	}
-	*str = ft_strcat(*str, message);
-}
-
-void	fill_right(char **str, short flags, int size, char *message)
-{
-	int i;
-
-	i = ft_strlen(*str);
-	while (i < size)
-	{
-		(*str)[i] = ' ';
-		i++;
-	}
+	va_end(argp);
+	return (1);
 }
