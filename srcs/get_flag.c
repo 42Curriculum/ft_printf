@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:07:52 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/06 15:49:40 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/08 13:03:41 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_func	*define_func(int conv)
 {
-	t_func *f_arr[10];
+	t_func *f_arr[11];
 
 	f_arr[0] = &conv_s;
 	f_arr[1] = &conv_c;
@@ -26,6 +26,7 @@ t_func	*define_func(int conv)
 	f_arr[7] = &conv_x_u;
 	f_arr[8] = &conv_f;
 	f_arr[9] = &conv_b;
+	f_arr[10] = &conv_u;
 	return (f_arr[conv]);
 }
 
@@ -47,7 +48,7 @@ void	define_flags(char (*flags)[12])
 
 int		get_conversion(char c)
 {
-	char	fs[10];
+	char	fs[11];
 	int		i;
 
 	fs[0] = 's';
@@ -60,8 +61,9 @@ int		get_conversion(char c)
 	fs[7] = 'X';
 	fs[8] = 'f';
 	fs[9] = 'b';
+	fs[10] = 'u';
 	i = 0;
-	while (i < 10)
+	while (i < 11)
 	{
 		if (c == fs[i])
 			return (i);
