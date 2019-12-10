@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-F_N = test ft_printf conversions conversions_v2 f_flag fill_str get_flag 
+F_N = ft_printf conversions conversions_v2 f_flag f_lflag fill_str get_flag 
 OBJS = $(addprefix objects/, $(addsuffix .o, $(F_N)))
 FILES = $(addprefix srcs/, $(addsuffix .c, $(F_N)))
 

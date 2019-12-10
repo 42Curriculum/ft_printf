@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_flag.c                                           :+:      :+:    :+:   */
+/*   f_lflag.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/30 23:37:19 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 20:52:11 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/12/09 16:59:55 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/12/09 20:21:39 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-char	*reallocate(char *str, int prec, int u_len)
+char	*reallocates(char *str, int prec, int u_len)
 {
 	char	*new;
 	int		i;
@@ -26,7 +26,7 @@ char	*reallocate(char *str, int prec, int u_len)
 	return (new);
 }
 
-void	count_dec(char **str)
+void	count_decs(char **str)
 {
 	int i;
 	int count;
@@ -52,7 +52,7 @@ void	count_dec(char **str)
 		ft_str_add(str, 1, i);
 }
 
-char	*calc_precison(long long precision, char *str)
+char	*calc_precisons(long long precision, char *str)
 {
 	int		i;
 	char	*new;
@@ -66,26 +66,26 @@ char	*calc_precison(long long precision, char *str)
 	}
 	i++;
 	if (i == (int)ft_strlen(str))
-		return (reallocate(str, precision, 0));
+		return (reallocates(str, precision, 0));
 	if (precision == 0)
 		precision = 6;
 	if (str[i + precision] >= '5')
 		ft_str_add(&str, 1, i + precision);
-	new = reallocate(str, precision, i);
+	new = reallocates(str, precision, i);
 	return (new);
 }
 
-char	*calc_number(char *str, int exp, int skip)
+char	*calc_numbers(char *str, int exp, int skip)
 {
 	long long i;
 
 	i = 0;
-	while (i < 52 && skip == 0)
+	while (i < 63 && skip == 0)
 	{
 		ft_strdiv(&str, 2, 0);
 		i++;
 	}
-	count_dec(&str);
+	count_decs(&str);
 	i = 0;
 	while (i < exp)
 	{
@@ -100,26 +100,26 @@ char	*calc_number(char *str, int exp, int skip)
 	return (str);
 }
 
-char	*get_double(int precision, double arg, int *sign)
+char	*get_ldouble(int precision, long double arg, int *sign)
 {
-	union u_dval	u_dval;
-	long long		mantissa;
+	union u_ldval	u_dval;
+	unsigned long	mantissa;
 	char			*tmp;
 	int				exp;
 	char			*str;
 
-	u_dval.type = (double)arg;
-	exp = u_dval.bits.exp - 1023;
+	u_dval.type = arg;
+	exp = u_dval.bits.exp - LD_BIAS;
 	mantissa = u_dval.bits.mantissa;
 	*sign = u_dval.bits.sign;
-	str = ft_strnew(1023);
-	ft_memset(str, '-', 1023);
-	tmp = ft_ltoa_base(mantissa, 10);
+	str = ft_strnew(LD_BIAS);
+	ft_memset(str, '-', LD_BIAS);
+	tmp = ft_ultoa_base(mantissa, 10);
 	str = ft_memmove(str, tmp, ft_strlen(tmp));
 	if (mantissa != 0)
-		str = calc_number(str, exp, 0);
+		str = calc_numbers(str, exp, 0);
 	else
-		str = calc_number(str, exp, 1);
-	str = calc_precison(precision, str);
+		str = calc_numbers(str, exp, 1);
+	str = calc_precisons(precision, str);
 	return (str);
 }

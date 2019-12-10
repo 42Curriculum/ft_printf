@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 02:45:51 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/05 03:40:12 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/09 21:44:34 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	ft_str_shift(char **str, int n_shift, char skip)
 		i++;
 		n++;
 	}
+	free(tmp);
 }

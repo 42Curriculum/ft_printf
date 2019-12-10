@@ -6,20 +6,18 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 02:34:06 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/05 22:27:03 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/09 17:12:11 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incl/libft.h"
 
-void	ft_strdiv(char **str, int multiplier)
+void	ft_strdiv(char **str, int multiplier, int i)
 {
-	int i;
 	int current;
 	int test;
 	int dot;
-	
-	i = 0;
+
 	current = 0;
 	dot = 0;
 	while ((*str)[i])
@@ -28,10 +26,7 @@ void	ft_strdiv(char **str, int multiplier)
 		{
 			if (dot == 0)
 			{
-				if ((*str)[i] == '.')
-					dot = 1;
-				else
-					dot = 1;
+				((*str)[i] == '.') ? (dot = 1) : (dot += 0);
 				(*str)[i] = '.';
 				i++;
 			}
@@ -40,7 +35,7 @@ void	ft_strdiv(char **str, int multiplier)
 			(*str)[i] = '0';
 		test = (((*str)[i] - '0') + current) / multiplier;
 		current = (((*str)[i] - '0') + current) % multiplier;
-		(*str)[i] =  test + '0';
+		(*str)[i] = test + '0';
 		current = (current * 10);
 		i++;
 	}

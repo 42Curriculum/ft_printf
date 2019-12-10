@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 12:32:15 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/06 14:27:36 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/09 19:59:31 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putnbr(int nb);
 void				ft_putnbr_fd(int nb, int fd);
-void				ft_strdiv(char **str, int multiplier);
+void				ft_strdiv(char **str, int multiplier, int i);
 void				ft_strmult(char **str, int multiplier, int i);
 void				ft_str_shift(char **str, int n_shift, char skip);
 void				ft_str_add(char **str, int add, int i);
@@ -95,6 +95,7 @@ unsigned int		ft_intsize(long long nb, int base);
 long long			ft_calc_exponent(int mult, int exp);
 void				ft_print2d(char **str, char c);
 int					ft_ctwords(const char *s, char c);
+char				*ft_ultoa_base(unsigned long value, int base);
 void				ft_lstappend(t_list *lst, t_list *elem);
 
 #endif
