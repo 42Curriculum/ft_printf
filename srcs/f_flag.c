@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 23:37:19 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 20:52:11 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:56:53 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ char	*get_double(int precision, double arg, int *sign)
 	exp = u_dval.bits.exp - 1023;
 	mantissa = u_dval.bits.mantissa;
 	*sign = u_dval.bits.sign;
+	if (!(f_exceptions(mantissa, exp, *sign)))
+		return (NULL);
 	str = ft_strnew(1023);
 	ft_memset(str, '-', 1023);
 	tmp = ft_ltoa_base(mantissa, 10);

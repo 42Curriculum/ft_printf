@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 21:31:00 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:50:03 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define FPRE 0x800
 # define D_BIAS 1023
 # define LD_BIAS 16383
+# define BIT_EXC 0x4000000000000000
 
 union					u_dval
 {
@@ -56,6 +57,7 @@ union					u_ldval
 
 typedef void			t_func(va_list *argp, short flags, int precision[]);
 
+int						f_exceptions(long long mantissa, int exp, int sign);
 char					*norm_sucks(va_list *a, int pr, int *si, short fls);
 int						ft_printf(const char *str, ...);
 

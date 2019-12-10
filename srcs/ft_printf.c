@@ -6,11 +6,29 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 21:27:01 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:56:34 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		f_exceptions(long long mantissa, int exp, int sign)
+{
+	if (0b11111111111 & exp)
+	{
+		if (mantissa == 0)
+		{
+			if (sign == 0)
+				ft_putstr("+∞");
+			else
+				ft_putstr("-∞");
+		}
+		else
+			ft_putstr("NaN");
+		return (1);
+	}
+	return (0);
+}
 
 char	*norm_sucks(va_list *argp, int prec, int *sign, short fls)
 {

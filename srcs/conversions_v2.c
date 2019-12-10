@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 21:33:52 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:45:34 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	conv_f(va_list *argp, short fls, int prec[])
 	char		*p;
 	char		*nb;
 
-	nb = norm_sucks(argp, prec[1], &sign, fls);
+	if (!(nb = norm_sucks(argp, prec[1], &sign, fls)))
+		return ;
 	size = ft_strlen(nb) + ((sign == 1 || fls & FPOS || fls & FSPA) ? 1 : 0);
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
