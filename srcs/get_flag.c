@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:07:52 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 21:55:30 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/14 03:39:21 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_func	*define_func(int conv)
 {
-	t_func *f_arr[11];
+	t_func *f_arr[12];
 
 	f_arr[0] = &conv_s;
 	f_arr[1] = &conv_c;
@@ -27,11 +27,13 @@ t_func	*define_func(int conv)
 	f_arr[8] = &conv_f;
 	f_arr[9] = &conv_b;
 	f_arr[10] = &conv_u;
+	f_arr[11] = &conv_per;
 	return (f_arr[conv]);
 }
 
-void	define_flags(char (*flags)[12])
+void	define_flags(char (*flags)[12], int *pl)
 {
+	*pl = 0;
 	(*flags)[0] = '-';
 	(*flags)[1] = '+';
 	(*flags)[2] = ' ';
@@ -48,7 +50,7 @@ void	define_flags(char (*flags)[12])
 
 int		get_conversion(char c)
 {
-	char	fs[11];
+	char	fs[12];
 	int		i;
 
 	fs[0] = 's';
@@ -62,8 +64,9 @@ int		get_conversion(char c)
 	fs[8] = 'f';
 	fs[9] = 'b';
 	fs[10] = 'u';
+	fs[11] = '%';
 	i = 0;
-	while (i < 11)
+	while (i < 12)
 	{
 		if (c == fs[i])
 			return (i);
@@ -79,8 +82,7 @@ void	get_flags(char *c, short *flags, int (*wi_prec)[2], int i)
 	int		p_l;
 
 	mask = 0b0000000000000001;
-	p_l = 0;
-	define_flags(&flags_ar);
+	define_flags(&flags_ar, &p_l);
 	(*flags & 0b0000100000000000) ? (p_l += 1) : (p_l = 0);
 	while (++i < 13)
 	{
@@ -88,8 +90,9 @@ void	get_flags(char *c, short *flags, int (*wi_prec)[2], int i)
 		{
 			(*wi_prec)[p_l] *= 10;
 			(*wi_prec)[p_l] += *c - '0';
+			return ;
 		}
-		else if ((int)*c == flags_ar[i])
+		else if (*c == flags_ar[i])
 		{
 			if (*c != '0' && (0b0000000001111000 & *flags) > 0)
 				return ;
@@ -113,7 +116,7 @@ int		read_chars(char *str, va_list *argp, int num)
 	wi_prec[0] = 0;
 	wi_prec[1] = 0;
 	flags = 0;
-	while ((conv = get_conversion(str[i])) == -1)
+	while (str[i] && (conv = get_conversion(str[i])) == -1)
 	{
 		if (str[i] == '*' && !(flags & 0b0000010000000000))
 		{
@@ -124,8 +127,7 @@ int		read_chars(char *str, va_list *argp, int num)
 			get_flags(&str[i], &flags, &wi_prec, -1);
 		i++;
 	}
-	i++;
-	function = define_func(conv);
-	function(argp, flags, wi_prec);
-	return (i);
+	if (conv <= 11 && conv >= 0 && (function = define_func(conv)))
+		function(argp, flags, wi_prec);
+	return (i + 1);
 }

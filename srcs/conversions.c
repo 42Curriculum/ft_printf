@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:47:21 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 21:54:38 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/14 03:25:29 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	conv_s(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, str, (int)ft_strlen(str));
-	free(str);
 	(1 & flags) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
@@ -101,6 +100,7 @@ void	conv_d(va_list *argp, short flags, int prec[])
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
 	(1 & flags) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	ft_putstr(p);
 	free(p);
 	free(nb);
 }
@@ -114,7 +114,8 @@ void	conv_o(va_list *argp, short flags, int prec[])
 
 	arg = va_arg(*argp, void*);
 	nb = hexcast(arg, flags, 8);
-	nb = ft_str_toupper(nb);
+	if (FHAS & flags && !((ft_strlen(nb)) == 1 && nb[0] == '0'))
+		nb = ft_better_strjoin(ft_strdup("0"), nb);
 	size = ft_strlen(nb);
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);

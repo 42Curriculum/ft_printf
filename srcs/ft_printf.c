@@ -6,29 +6,11 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/10 11:56:34 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/13 16:44:41 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		f_exceptions(long long mantissa, int exp, int sign)
-{
-	if (0b11111111111 & exp)
-	{
-		if (mantissa == 0)
-		{
-			if (sign == 0)
-				ft_putstr("+∞");
-			else
-				ft_putstr("-∞");
-		}
-		else
-			ft_putstr("NaN");
-		return (1);
-	}
-	return (0);
-}
 
 char	*norm_sucks(va_list *argp, int prec, int *sign, short fls)
 {
@@ -49,6 +31,26 @@ char	*norm_sucks(va_list *argp, int prec, int *sign, short fls)
 	return (nb);
 }
 
+void	conv_per(va_list *argp, short flags, int prec[])
+{
+	char	*p;
+	int		size;
+
+	(void)argp;
+	size = 1;
+	if (prec[0] > 1)
+		(prec[0] = prec[0] - 1);
+	else
+		prec[0] = 0;
+	size += prec[0];
+	p = ft_strnew((size));
+	p = ft_memset(p, ' ', size);
+	p[0] = '%';
+	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	ft_putstr(p);
+	free(p);
+}
+
 int		ft_printf(const char *str, ...)
 {
 	va_list argp;
@@ -60,12 +62,10 @@ int		ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			if (str[i + 1] == '%')
+			if (str[++i] == '%')
 				write(1, "%", 1);
-			else
-			{
+			else if (str[i] != '\0')
 				i += read_chars((char *)(str + i), &argp, 0);
-			}
 		}
 		else
 		{

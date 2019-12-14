@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/10 11:50:03 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/13 16:42:31 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ union					u_ldval
 
 typedef void			t_func(va_list *argp, short flags, int precision[]);
 
-int						f_exceptions(long long mantissa, int exp, int sign);
+void					conv_per(va_list *argp, short flags, int prec[]);
 char					*norm_sucks(va_list *a, int pr, int *si, short fls);
 int						ft_printf(const char *str, ...);
 

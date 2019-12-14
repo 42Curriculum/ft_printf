@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 12:32:15 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/09 19:59:31 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/14 01:37:40 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char				*ft_strtrim(char	const *s);
 char				**ft_strsplit(const char *s, char c);
 char				*ft_itoa_base(int value, int base);
 char				*ft_ltoa_base(long long value, int base);
-char				*ft_str_toupper(char *str);
+void				ft_str_toupper(char **str);
 char				*ft_str_tolower(char *str);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
@@ -96,6 +96,7 @@ long long			ft_calc_exponent(int mult, int exp);
 void				ft_print2d(char **str, char c);
 int					ft_ctwords(const char *s, char c);
 char				*ft_ultoa_base(unsigned long value, int base);
+char				*ft_uitoa_base(unsigned int value, int base);
 void				ft_lstappend(t_list *lst, t_list *elem);
 
 #endif

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_toupper.c                                   :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 16:46:51 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/14 03:09:48 by jjosephi         ###   ########.fr       */
+/*   Created: 2019/12/14 01:36:09 by jjosephi          #+#    #+#             */
+/*   Updated: 2019/12/14 01:37:46 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incl/libft.h"
 
-void	ft_str_toupper(char **str)
+char		*ft_uitoa_base(unsigned int value, int base)
 {
-	int i;
+	int				len;
+	unsigned long	nbr;
+	char			*str;
+	char			*s_base;
 
-	i = 0;
-	while ((*str)[i])
+	s_base = "0123456789abcdef";
+	len = (int)ft_intsize(value, base);
+	nbr = value;
+	str = ft_strnew(len);
+	while (len > 0)
 	{
-		(*str)[i] = ft_toupper((*str)[i]);
-		i++;
+		str[--len] = s_base[nbr % base];
+		nbr /= base;
 	}
+	return (str);
 }

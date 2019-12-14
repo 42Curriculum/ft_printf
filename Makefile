@@ -21,7 +21,7 @@ $(NAME) : $(OBJS)
 	@echo  Making libft.. 
 	@make -C $(LIB)
 	@echo  Compiling..
-	@ar rc $(NAME) $(OBJS)
+	@ar rc $(NAME) $(OBJS) libft/*.o
 	@echo Done!
 
 clean :

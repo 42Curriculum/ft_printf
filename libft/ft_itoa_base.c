@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 00:16:19 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/05 17:22:57 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/13 17:33:29 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char		*ft_itoa_base(int value, int base)
 	char		*s_base;
 
 	s_base = "0123456789abcdef";
-	if (value == 0)
-		return ("0");
 	len = (int)ft_intsize(value, base);
 	nbr = value;
 	if (nbr < 0)
