@@ -19,7 +19,7 @@ objects/%.o : srcs/%.c
 
 $(NAME) : $(OBJS)
 	@echo  Making libft.. 
-	@make -C $(LIB)
+	@make -C $(LIB) re
 	@echo  Compiling..
 	@ar rc $(NAME) $(OBJS) libft/*.o
 	@echo Done!
