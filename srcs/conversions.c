@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:47:21 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/14 03:25:29 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/17 00:20:24 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	conv_p(va_list *argp, short flags, int prec[])
 	int		size;
 
 	ptr = va_arg(*argp, void*);
-	address = ft_itoa_base((long long)(ptr), 16);
+	address = ft_ultoa_base((unsigned long)(ptr), 16);
 	size = ft_strlen(address) + 2;
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
@@ -88,9 +88,13 @@ void	conv_d(va_list *argp, short flags, int prec[])
 	char	*nb;
 	int		size;
 	char	*p;
+    int     sign;
 
 	nb = typecast(argp, flags, 10);
+    (nb[0] == '-') ? (sign = 1) : (sign = 0);
 	size = ft_strlen(nb);
+    if (flags & FSPA || flags & FPOS)
+        size += 1;
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
 	else
@@ -100,6 +104,7 @@ void	conv_d(va_list *argp, short flags, int prec[])
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
 	(1 & flags) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+    make_str(flags, sign, &p);
 	ft_putstr(p);
 	free(p);
 	free(nb);

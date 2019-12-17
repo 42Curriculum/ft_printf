@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:41:46 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/14 02:15:02 by jjosephi         ###   ########.fr       */
+/*   Updated: 2019/12/16 23:57:01 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	make_str(short flags, int sign, char **nb)
 {
 	if (sign == 1 || flags & FSPA || flags & FPOS)
 	{
-		ft_str_shift(nb, 1, '\0');
+		ft_str_shift(nb, 1, '=');
 		if (sign == 1)
 			(*nb)[0] = '-';
 		else if (flags & FSPA)
