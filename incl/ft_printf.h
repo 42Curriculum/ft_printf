@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/13 16:42:31 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/06 18:18:51 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char					*get_double(int precision, double arg, int *sign);
 char					*get_ldouble(int precision, long double arg, int *sign);
 
 void					fill_left(char **str, int precision, short flags);
-void					fill_right(char **str, int size);
+void	                fill_right(char **str, int size, int sign, short flag);
 void					make_str(short flags, int sign, char **nb);
 char					*typecast(va_list *argp, short flags, int base);
 

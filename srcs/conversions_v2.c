@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/14 03:25:02 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 14:09:36 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	conv_x(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }
@@ -58,7 +58,7 @@ void	conv_x_u(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }
@@ -81,7 +81,7 @@ void	conv_f(va_list *argp, short fls, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & fls)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], fls);
+	((1 & fls)) ? fill_right(&p, prec[0],sign,fls) : fill_left(&p, prec[0], fls);
 	make_str(fls, sign, &p);
 	ft_putstr(p);
 	free(p);
@@ -107,7 +107,7 @@ void	conv_b(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }
@@ -130,7 +130,7 @@ void	conv_u(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & flags)) ? fill_right(&p, prec[0], 0, flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }

@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/13 16:44:41 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 14:09:59 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*norm_sucks(va_list *argp, int prec, int *sign, short fls)
 	return (nb);
 }
 
-void	conv_per(va_list *argp, short flags, int prec[])
+void	conv_per(va_list *argp, short fls, int prec[])
 {
 	char	*p;
 	int		size;
@@ -46,7 +46,7 @@ void	conv_per(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p[0] = '%';
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & fls)) ? fill_right(&p, prec[0], 0, fls) : fill_left(&p, prec[0], fls);
 	ft_putstr(p);
 	free(p);
 }

@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:41:46 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/16 23:57:01 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 14:09:55 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	fill_left(char **str, int precision, short flags)
 	int i;
 
 	i = 0;
-	ft_str_shift(str, precision, '\0');
 	while (i < precision)
 	{
 		if (F0FI & flags)
@@ -27,31 +26,55 @@ void	fill_left(char **str, int precision, short flags)
 			(*str)[i] = ' ';
 		i++;
 	}
+
 }
 
-void	fill_right(char **str, int size)
+void	fill_right(char **str, int size, int sign, short flag)
 {
 	int i;
+    int shift;
+    char *tmp;
 
 	i = ft_strlen(*str);
-	while (i < size)
-	{
-		(*str)[i] = ' ';
-		i++;
-	}
+    if ((flag & FPOS || flag & FSPA) && sign == 0)
+        shift = (size -= 1) + 1;
+    else if (sign == 1)
+        shift = size - 1 + sign + 1;
+    else
+        shift = size -= 1;
+    tmp = ft_strdup((*str));
+    if (size > 0)
+    {
+        while (i-- && --shift >= 0)
+        {
+            (*str)[shift] = tmp[i];
+        }
+        i = ft_strlen(*str) - 1;
+	    while (i > size)
+	    {
+		    (*str)[i] = ' ';
+		    i--;
+	    }
+    }
 }
 
 void	make_str(short flags, int sign, char **nb)
 {
+    int i;
+
+    i = 0;
 	if (sign == 1 || flags & FSPA || flags & FPOS)
 	{
-		ft_str_shift(nb, 1, '=');
 		if (sign == 1)
-			(*nb)[0] = '-';
-		else if (flags & FSPA)
-			(*nb)[0] = ' ';
-		else
+        {
+            while ((*nb)[i] == ' ')
+                i++;
+			(i > 0) ? ((*nb)[i - 1] = '-') : ((*nb)[i] = '-');
+        }
+		else if (flags & FPOS)
 			(*nb)[0] = '+';
+		else
+			(*nb)[0] = ' ';
 	}
 }
 

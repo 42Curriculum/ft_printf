@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:47:21 by jjosephi          #+#    #+#             */
-/*   Updated: 2019/12/17 00:20:24 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 14:09:40 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	conv_s(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, str, (int)ft_strlen(str));
-	(1 & flags) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	(1 & flags) ? fill_right(&p, prec[0],0, flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }
@@ -53,7 +53,7 @@ void	conv_c(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p[0] = c;
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }
@@ -76,7 +76,7 @@ void	conv_p(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, address, (int)ft_strlen(address));
-	(1 & flags) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	(1 & flags) ? fill_right(&p, prec[0],0,0) : fill_left(&p, prec[0], flags);
 	ft_putstr("0x");
 	ft_putstr(p);
 	free(p);
@@ -92,22 +92,25 @@ void	conv_d(va_list *argp, short flags, int prec[])
 
 	nb = typecast(argp, flags, 10);
     (nb[0] == '-') ? (sign = 1) : (sign = 0);
+    (nb[0] == '-') ? (nb[0] = ' ') : (nb[0] += 0);
 	size = ft_strlen(nb);
-    if (flags & FSPA || flags & FPOS)
+    if ((flags & FSPA || flags & FPOS) && sign == 0)
         size += 1;
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
 	else
 		prec[0] = 0;
 	size += prec[0];
-	p = ft_strnew((size));
-	p = ft_memset(p, ' ', size);
-	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	(1 & flags) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	p = ft_strnew((size - ft_strlen(nb)));
+	p = ft_memset(p, ' ', size - ft_strlen(nb));
+	p = ft_strjoin(p, nb);
+    if ((flags & FPOS || flags & FSPA) && sign == 0)
+        prec[0] += 1;
+	(1 & flags) ? fill_right(&p, prec[0], sign, flags) : fill_left(&p, prec[0] + sign, flags);
     make_str(flags, sign, &p);
 	ft_putstr(p);
 	free(p);
-	free(nb);
+	//free(nb);
 }
 
 void	conv_o(va_list *argp, short flags, int prec[])
@@ -130,7 +133,7 @@ void	conv_o(va_list *argp, short flags, int prec[])
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & flags)) ? fill_right(&p, prec[0]) : fill_left(&p, prec[0], flags);
+	((1 & flags)) ? fill_right(&p, prec[0],0, flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
 }
