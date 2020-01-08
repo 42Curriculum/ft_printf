@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:41:46 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:09:55 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:40:03 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	make_str(short flags, int sign, char **nb)
 	{
 		if (sign == 1)
         {
-            while ((*nb)[i] == ' ')
+            while ((*nb)[i] == ' ')/* Test without this */
                 i++;
 			(i > 0) ? ((*nb)[i - 1] = '-') : ((*nb)[i] = '-');
         }
@@ -78,7 +78,7 @@ void	make_str(short flags, int sign, char **nb)
 	}
 }
 
-char	*typecast(va_list *argp, short flags, int base)
+char	*signed_cast(va_list *argp, short flags, int base)
 {
 	char *str;
 
@@ -95,7 +95,7 @@ char	*typecast(va_list *argp, short flags, int base)
 	return (str);
 }
 
-char	*hexcast(void *arg, short flags, int base)
+char	*unsigned_cast(void *arg, short flags, int base)
 {
 	char *str;
 

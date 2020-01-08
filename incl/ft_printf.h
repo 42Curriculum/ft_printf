@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/06 18:18:51 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:01:23 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ union					u_ldval
 typedef void			t_func(va_list *argp, short flags, int precision[]);
 
 void					conv_per(va_list *argp, short flags, int prec[]);
-char					*norm_sucks(va_list *a, int pr, int *si, short fls);
+char					*which_double(va_list *a, int pr, int *si, short fls);
 int						ft_printf(const char *str, ...);
 
 int						read_chars(char *str, va_list *argp, int num);
@@ -81,8 +81,8 @@ char					*get_ldouble(int precision, long double arg, int *sign);
 void					fill_left(char **str, int precision, short flags);
 void	                fill_right(char **str, int size, int sign, short flag);
 void					make_str(short flags, int sign, char **nb);
-char					*typecast(va_list *argp, short flags, int base);
+char					*signed_cast(va_list *argp, short flags, int base);
 
-char					*hexcast(void *arg, short flags, int base);
+char					*unsigned_cast(void *arg, short flags, int base);
 
 #endif

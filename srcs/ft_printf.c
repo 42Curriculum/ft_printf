@@ -6,13 +6,13 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:09:59 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:09:42 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*norm_sucks(va_list *argp, int prec, int *sign, short fls)
+char	*which_double(va_list *argp, int prec, int *sign, short fls)
 {
 	long double	arg;
 	double		ar;
@@ -74,5 +74,5 @@ int		ft_printf(const char *str, ...)
 		}
 	}
 	va_end(argp);
-	return (1);
+	return (i);
 }

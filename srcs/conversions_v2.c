@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:09:36 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:09:01 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	conv_x(va_list *argp, short flags, int prec[])
 	char	*p;
 
 	arg = va_arg(*argp, void*);
-	nb = hexcast(arg, flags, 16);
+	nb = unsigned_cast(arg, flags, 16);
 	if (FHAS & flags && !((ft_strlen(nb)) == 1 && nb[0] == '0'))
 		nb = ft_better_strjoin(ft_strdup("0x"), nb);
 	size = ft_strlen(nb);
@@ -45,7 +45,7 @@ void	conv_x_u(va_list *argp, short flags, int prec[])
 	char	*p;
 
 	arg = va_arg(*argp, void*);
-	nb = hexcast(arg, flags, 16);
+	nb = unsigned_cast(arg, flags, 16);
 	if (FHAS & flags && !((ft_strlen(nb)) == 1 && nb[0] == '0'))
 		nb = ft_better_strjoin(ft_strdup("0x"), nb);
 	ft_str_toupper(&nb);
@@ -70,7 +70,7 @@ void	conv_f(va_list *argp, short fls, int prec[])
 	char		*p;
 	char		*nb;
 
-	if (!(nb = norm_sucks(argp, prec[1], &sign, fls)))
+	if (!(nb = which_double(argp, prec[1], &sign, fls)))
 		return ;
 	size = ft_strlen(nb) + ((sign == 1 || fls & FPOS || fls & FSPA) ? 1 : 0);
 	if (prec[0] > size)
@@ -95,7 +95,7 @@ void	conv_b(va_list *argp, short flags, int prec[])
 	char	*p;
 
 	arg = va_arg(*argp, void*);
-	nb = hexcast(arg, flags, 2);
+	nb = unsigned_cast(arg, flags, 2);
 	if (FHAS & flags && !((ft_strlen(nb)) == 1 && nb[0] == '0'))
 		nb = ft_better_strjoin(ft_strdup("0x"), nb);
 	size = ft_strlen(nb);
@@ -120,7 +120,7 @@ void	conv_u(va_list *argp, short flags, int prec[])
 	char	*p;
 
 	arg = va_arg(*argp, void*);
-	nb = hexcast(arg, flags, 10);
+	nb = unsigned_cast(arg, flags, 10);
 	size = ft_strlen(nb);
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);

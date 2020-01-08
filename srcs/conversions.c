@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:47:21 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:09:40 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 15:44:50 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	conv_d(va_list *argp, short flags, int prec[])
 	char	*p;
     int     sign;
 
-	nb = typecast(argp, flags, 10);
+	nb = signed_cast(argp, flags, 10);
     (nb[0] == '-') ? (sign = 1) : (sign = 0);
     (nb[0] == '-') ? (nb[0] = ' ') : (nb[0] += 0);
 	size = ft_strlen(nb);
@@ -103,7 +103,7 @@ void	conv_d(va_list *argp, short flags, int prec[])
 	size += prec[0];
 	p = ft_strnew((size - ft_strlen(nb)));
 	p = ft_memset(p, ' ', size - ft_strlen(nb));
-	p = ft_strjoin(p, nb);
+	p = ft_better_strjoin(p, nb);
     if ((flags & FPOS || flags & FSPA) && sign == 0)
         prec[0] += 1;
 	(1 & flags) ? fill_right(&p, prec[0], sign, flags) : fill_left(&p, prec[0] + sign, flags);
@@ -121,7 +121,7 @@ void	conv_o(va_list *argp, short flags, int prec[])
 	char	*p;
 
 	arg = va_arg(*argp, void*);
-	nb = hexcast(arg, flags, 8);
+	nb = unsigned_cast(arg, flags, 8);
 	if (FHAS & flags && !((ft_strlen(nb)) == 1 && nb[0] == '0'))
 		nb = ft_better_strjoin(ft_strdup("0"), nb);
 	size = ft_strlen(nb);
