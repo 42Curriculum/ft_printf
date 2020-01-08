@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 16:01:23 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 22:24:40 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,25 @@ union					u_ldval
 	}					bits;
 }						u_ldval;
 
-typedef void			t_func(va_list *argp, short flags, int precision[]);
+typedef int			t_func(va_list *argp, short flags, int precision[]);
 
-void					conv_per(va_list *argp, short flags, int prec[]);
+int						conv_per(va_list *argp, short flags, int prec[]);
 char					*which_double(va_list *a, int pr, int *si, short fls);
 int						ft_printf(const char *str, ...);
 
-int						read_chars(char *str, va_list *argp, int num);
+int						read_chars(char *str, va_list *argp, int num, int *ret);
 
-void					conv_s(va_list *argp, short flags, int prec[]);
-void					conv_c(va_list *argp, short flags, int prec[]);
-void					conv_p(va_list *argp, short flags, int prec[]);
-void					conv_d(va_list *argp, short flags, int prec[]);
-void					conv_o(va_list *argp, short flags, int prec[]);
+int						conv_s(va_list *argp, short flags, int prec[]);
+int						conv_c(va_list *argp, short flags, int prec[]);
+int						conv_p(va_list *argp, short flags, int prec[]);
+int						conv_d(va_list *argp, short flags, int prec[]);
+int						conv_o(va_list *argp, short flags, int prec[]);
 
-void					conv_x(va_list *argp, short flags, int prec[]);
-void					conv_f(va_list *argp, short flags, int prec[]);
-void					conv_b(va_list *argp, short flags, int prec[]);
-void					conv_u(va_list *argp, short flags, int prec[]);
-void					conv_x_u(va_list *argp, short flags, int prec[]);
+int						conv_x(va_list *argp, short flags, int prec[]);
+int						conv_f(va_list *argp, short flags, int prec[]);
+int						conv_b(va_list *argp, short flags, int prec[]);
+int						conv_u(va_list *argp, short flags, int prec[]);
+int						conv_x_u(va_list *argp, short flags, int prec[]);
 
 char					*get_double(int precision, double arg, int *sign);
 char					*get_ldouble(int precision, long double arg, int *sign);

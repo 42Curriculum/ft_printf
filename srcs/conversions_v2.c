@@ -6,13 +6,13 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 15:09:01 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 22:39:37 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	conv_x(va_list *argp, short flags, int prec[])
+int	conv_x(va_list *argp, short flags, int prec[])
 {
 	void	*arg;
 	char	*nb;
@@ -35,9 +35,10 @@ void	conv_x(va_list *argp, short flags, int prec[])
 	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
+	return (size);
 }
 
-void	conv_x_u(va_list *argp, short flags, int prec[])
+int	conv_x_u(va_list *argp, short flags, int prec[])
 {
 	void	*arg;
 	char	*nb;
@@ -61,9 +62,10 @@ void	conv_x_u(va_list *argp, short flags, int prec[])
 	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
+	return (size);
 }
 
-void	conv_f(va_list *argp, short fls, int prec[])
+int	conv_f(va_list *argp, short fls, int prec[])
 {
 	int			sign;
 	long long	size;
@@ -71,7 +73,7 @@ void	conv_f(va_list *argp, short fls, int prec[])
 	char		*nb;
 
 	if (!(nb = which_double(argp, prec[1], &sign, fls)))
-		return ;
+		return (0);
 	size = ft_strlen(nb) + ((sign == 1 || fls & FPOS || fls & FSPA) ? 1 : 0);
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
@@ -85,9 +87,10 @@ void	conv_f(va_list *argp, short fls, int prec[])
 	make_str(fls, sign, &p);
 	ft_putstr(p);
 	free(p);
+	return (size);
 }
 
-void	conv_b(va_list *argp, short flags, int prec[])
+int	conv_b(va_list *argp, short flags, int prec[])
 {
 	void	*arg;
 	char	*nb;
@@ -110,9 +113,10 @@ void	conv_b(va_list *argp, short flags, int prec[])
 	((1 & flags)) ? fill_right(&p, prec[0],0,flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
+	return (size);
 }
 
-void	conv_u(va_list *argp, short flags, int prec[])
+int	conv_u(va_list *argp, short flags, int prec[])
 {
 	void	*arg;
 	char	*nb;
@@ -133,4 +137,5 @@ void	conv_u(va_list *argp, short flags, int prec[])
 	((1 & flags)) ? fill_right(&p, prec[0], 0, flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);
+	return (size);
 }

@@ -13,13 +13,13 @@ int main()
 	ft_printf(argv[1], argv[2]); */
  /*    ft_printf("%d\n", 1);
     printf("%d\n", 1); */
-    int a, b;
+   /*  int a, b;
     char *c;
     c = ft_strnew(5);
-    a = ft_printf("%05d\n", -424242);
-    b = printf("%05d\n", -424242);
+    a = ft_printf("%s", NULL);
+    b = printf("%s", NULL);
     fflush(stdin);
-    printf("a: %d\nb: %d\n", a, b);
+    printf("a: %d\nb: %d\n", a, b); */
     // fflush(stdin);
     // /* ft_printf("%-05d\n", 424242);
     // printf("%-05d\n", 424242); */
@@ -75,8 +75,8 @@ int main()
     // ft_printf("\n%f",0.5);
     // ft_printf("\n%f", 50.0);
     // ft_printf("\n%f",12323149.5);
-    // ft_printf("%%%c%c%c%c%c%c", ' ', '4', '\13', '~', '2', '\n');
-    // ft_printf("\n% s","C'est");
+    ft_printf("%%%c%c%c%c%c%c", ' ', '4', '\13', '~', '2', '\n');
+    ft_printf("\n%%% c",'h');
     // printf("\n% s","C'est");
 	return(1);
 }

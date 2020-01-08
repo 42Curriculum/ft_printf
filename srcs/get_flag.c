@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:07:52 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:10:02 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 22:26:32 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	get_flags(char *c, short *flags, int (*wi_prec)[2], int i)
 	}
 }
 
-int		read_chars(char *str, va_list *argp, int num)
+int		read_chars(char *str, va_list *argp, int num, int *ret)
 {
 	t_func	*function;
 	short	flags;
@@ -128,6 +128,6 @@ int		read_chars(char *str, va_list *argp, int num)
 		i++;
 	}
 	if (conv <= 11 && conv >= 0 && (function = define_func(conv)))
-		function(argp, flags, wi_prec);
+		*ret += function(argp, flags, wi_prec);
 	return (i + 1);
 }
