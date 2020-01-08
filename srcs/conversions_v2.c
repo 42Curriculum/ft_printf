@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:39:37 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 22:59:13 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	conv_f(va_list *argp, short fls, int prec[])
 	else
 		prec[0] = 0;
 	size += prec[0];
+	(nb[0] == '.') ? (size++) : (size += 0);
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
 	p = ft_strncpy(p, nb, (int)ft_strlen(nb));

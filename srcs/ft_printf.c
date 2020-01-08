@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:46:26 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 22:55:51 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			if (str[++i] == '%' && i++)
+			if (str[++i] == '%' && i++ && ++ret)
 				write(1, "%", 1);
 			else if (str[i] != '\0')
 				i += read_chars((char *)(str + i), &argp, 0, &ret);

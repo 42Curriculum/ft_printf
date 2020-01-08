@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 14:41:46 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 15:40:03 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/07 23:06:07 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ void	make_str(short flags, int sign, char **nb)
 	{
 		if (sign == 1)
         {
-            while ((*nb)[i] == ' ')/* Test without this */
+           /*  while ((*nb)[i] == ' ')
                 i++;
-			(i > 0) ? ((*nb)[i - 1] = '-') : ((*nb)[i] = '-');
+			(i > 0) ? ((*nb)[i - 1] = '-') : ((*nb)[i] = '-'); */
+			nb[0] = '-';
         }
 		else if (flags & FPOS)
 			(*nb)[0] = '+';
