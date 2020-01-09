@@ -13,18 +13,18 @@ int main()
 	ft_printf(argv[1], argv[2]); */
  /*    ft_printf("%d\n", 1);
     printf("%d\n", 1); */
-   /*  int a, b;
+    /* int a, b;
     char *c;
     c = ft_strnew(5);
-    a = ft_printf("%s", NULL);
-    b = printf("%s", NULL);
+    a = ft_printf("%%s");
+    b = printf("%%s");
     fflush(stdin);
     printf("a: %d\nb: %d\n", a, b); */
     // fflush(stdin);
-    // /* ft_printf("%-05d\n", 424242);
-    // printf("%-05d\n", 424242); */
-    // ft_printf("%+d\n", 9001);
-    // printf("%+d\n", 9001);
+   /*  ft_printf("%-05d\n", -42);
+     printf("%-05d\n", -42);
+     ft_printf("%+d\n", 9001);
+     printf("%+d\n", 9001); */
     // ft_printf("%d\n", INT_MAX);
     // printf("%d\n", INT_MAX);
     // ft_printf("%ld\n", (long) INT_MAX + 1);
@@ -71,12 +71,14 @@ int main()
     // printf("%li\n", LONG_MIN);
     // ft_printf("%Lf\n",111119127890.1890L);
     // printf("\n%Lf\n",111119127890.1890L); 
-    // ft_printf("\n%f",-0.8);
+     //ft_printf("\n%.0f",-10.4);
+	printf("%.2s\n","012");
+	ft_printf("\n%.2s","012");
     // ft_printf("\n%f",0.5);
     // ft_printf("\n%f", 50.0);
     // ft_printf("\n%f",12323149.5);
-    ft_printf("%%%c%c%c%c%c%c", ' ', '4', '\13', '~', '2', '\n');
-    ft_printf("\n%%% c",'h');
+   // ft_printf("%%%c%c%c%c%c%c", ' ', '4', '\13', '~', '2', '\n');
+  //  ft_printf("\n%%% c",'h');
     // printf("\n% s","C'est");
 	return(1);
 }

@@ -6,11 +6,18 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/08 16:42:03 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:46:47 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	set_width_prec(int i, int p_l, int (*wi_prec)[], char *c)
+{
+	((*wi_prec)[p_l] == -1) ? ((*wi_prec)[p_l] = 0) : (i += 0);
+	(*wi_prec)[p_l] *= 10;
+	(*wi_prec)[p_l] += *c - '0';
+}
 
 void	zeroprec_decimal(char *nb, short flags)
 {
@@ -23,7 +30,7 @@ void	zeroprec_decimal(char *nb, short flags)
 	if (flags & FHAS && (nb[i] != '.'))
 	{
 		new = malloc((int)ft_strlen(nb) + 1);
-		new = ft_strncpy(new, nb,(int)ft_strlen(nb));
+		new = ft_strncpy(new, nb, (int)ft_strlen(nb));
 		new[(int)ft_strlen(nb)] = '.';
 	}
 	else

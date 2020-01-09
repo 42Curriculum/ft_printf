@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 16:59:55 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:09:50 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:38:36 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,16 @@ char	*reallocates(char *str, int prec, int u_len)
 	i = 0;
 	while (str[i] == '0')
 		i++;
+	if (str[i] == '.')
+		u_len++;
 	new = ft_strnew(u_len - i + prec);
-	new = ft_strncpy(new, str + i, u_len - i + prec);
+	if (str[i] == '.')
+	{
+		ft_strncpy(new + 1, str + i, u_len - i + prec - 1);
+		new[0] = '0';
+	}
+	else
+		new = ft_strncpy(new, str + i, u_len - i + prec - 1);
 	return (new);
 }
 
@@ -52,7 +60,7 @@ void	count_decs(char **str)
 		ft_str_add(str, 1, i);
 }
 
-char	*calc_precisons(long long precision, char *str)
+char	*calc_precisions(long long p, char *str)
 {
 	int		i;
 	char	*new;
@@ -66,12 +74,12 @@ char	*calc_precisons(long long precision, char *str)
 	}
 	i++;
 	if (i == (int)ft_strlen(str))
-		return (reallocates(str, precision, 0));
-	if (precision == 0)
-		precision = 6;
-	if (str[i + precision] >= '5')
-		ft_str_add(&str, 1, i + precision);
-	new = reallocates(str, precision, i);
+		return (reallocates(str, p, 0));
+	if (p == -1)
+		p = 6;
+	if (str[i + p] >= '5')
+		(p == 0) ? ft_str_add(&str, 1, i + p - 1) : ft_str_add(&str, 1, i + p);
+	new = reallocates(str, p, i);
 	return (new);
 }
 
@@ -120,6 +128,6 @@ char	*get_ldouble(int precision, long double arg, int *sign)
 		str = calc_numbers(str, exp, 0);
 	else
 		str = calc_numbers(str, exp, 1);
-	str = calc_precisons(precision, str);
+	str = calc_precisions(precision, str);
 	return (str);
 }

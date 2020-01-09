@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:24:40 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:47:07 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ union					u_ldval
 
 typedef int			t_func(va_list *argp, short flags, int precision[]);
 
+void					set_width_prec(int i, int p_l, int (*wi_prec)[], char *c);
+void					zeroprec_decimal(char *nb, short flags);
 int						conv_per(va_list *argp, short flags, int prec[]);
 char					*which_double(va_list *a, int pr, int *si, short fls);
 int						ft_printf(const char *str, ...);

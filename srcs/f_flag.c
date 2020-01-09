@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 23:37:19 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/08 16:15:15 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:32:58 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	count_dec(char **str)
 		ft_str_add(str, 1, i);
 }
 
-char	*calc_precison(long long precision, char *str)
+char	*calc_precison(long long p, char *str)
 {
 	int		i;
 	char	*new;
@@ -74,12 +74,12 @@ char	*calc_precison(long long precision, char *str)
 	}
 	i++;
 	if (i == (int)ft_strlen(str))
-		return (reallocate(str, precision, 0));
-	if (precision == -1)
-		precision = 6;
-	if (str[i + precision] >= '5')
-		(precision == 0) ? ft_str_add(&str, 1, i + precision - 1) : ft_str_add(&str, 1, i + precision);
-	new = reallocate(str, precision, i);
+		return (reallocate(str, p, 0));
+	if (p == -1)
+		p = 6;
+	if (str[i + p] >= '5')
+		(p == 0) ? ft_str_add(&str, 1, i + p - 1) : ft_str_add(&str, 1, i + p);
+	new = reallocate(str, p, i);
 	return (new);
 }
 
