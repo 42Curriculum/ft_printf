@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:58:23 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/08 17:47:07 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 18:03:18 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ union					u_ldval
 	}					bits;
 }						u_ldval;
 
-typedef int			t_func(va_list *argp, short flags, int precision[]);
+typedef int				t_func(va_list *argp, short flags, int precision[]);
 
-void					set_width_prec(int i, int p_l, int (*wi_prec)[], char *c);
+void					set_width_prec(int i, int p_l, int (*w)[], char *c);
 void					zeroprec_decimal(char *nb, short flags);
 int						conv_per(va_list *argp, short flags, int prec[]);
 char					*which_double(va_list *a, int pr, int *si, short fls);
@@ -81,7 +81,7 @@ char					*get_double(int precision, double arg, int *sign);
 char					*get_ldouble(int precision, long double arg, int *sign);
 
 void					fill_left(char **str, int precision, short flags);
-void	                fill_right(char **str, int size, int sign, short flag);
+void					fill_right(char **str, int size, int sign, short flag);
 void					make_str(short flags, int sign, char **nb);
 char					*signed_cast(va_list *argp, short flags, int base);
 
