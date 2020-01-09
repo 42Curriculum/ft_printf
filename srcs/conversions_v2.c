@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:59:13 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 16:31:31 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,29 @@ int	conv_f(va_list *argp, short fls, int prec[])
 
 	if (!(nb = which_double(argp, prec[1], &sign, fls)))
 		return (0);
-	size = ft_strlen(nb) + ((sign == 1 || fls & FPOS || fls & FSPA) ? 1 : 0);
+		size = ft_strlen(nb);
+    if ((fls & FSPA || fls & FPOS) && sign == 0)
+        size += 1;
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
 	else
 		prec[0] = 0;
 	size += prec[0];
-	(nb[0] == '.') ? (size++) : (size += 0);
-	p = ft_strnew((size));
-	p = ft_memset(p, ' ', size);
-	p = ft_strncpy(p, nb, (int)ft_strlen(nb));
-	((1 & fls)) ? fill_right(&p, prec[0],sign,fls) : fill_left(&p, prec[0], fls);
-	make_str(fls, sign, &p);
-	ft_putstr(p);
+	size += sign;
+	p = ft_strnew((size - ft_strlen(nb)));
+	p = ft_memset(p, ' ', size - ft_strlen(nb));
+	p = ft_better_strjoin(p, nb);
+    if ((fls & FPOS || fls & FSPA) && sign == 0)
+        prec[0] += 1;
+	(1 & fls) ? fill_right(&p, prec[0], sign, fls) : fill_left(&p, prec[0] + sign, fls);
+    make_str(fls, sign, &p);
+	(prec[1] == 0) ? (zeroprec_decimal(p, fls)) : ft_putstr(p);
 	free(p);
 	return (size);
 }
-
+/* 
+FIX PRECISION 0 => SHOUDL ONLY PRINT . 
+ */
 int	conv_b(va_list *argp, short flags, int prec[])
 {
 	void	*arg;

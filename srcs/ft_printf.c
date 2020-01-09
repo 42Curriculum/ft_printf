@@ -6,11 +6,39 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 07:48:49 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:55:51 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 16:42:03 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	zeroprec_decimal(char *nb, short flags)
+{
+	int		i;
+	char	*new;
+
+	i = 0;
+	while (nb[i] && nb[i] != '.')
+		i++;
+	if (flags & FHAS && (nb[i] != '.'))
+	{
+		new = malloc((int)ft_strlen(nb) + 1);
+		new = ft_strncpy(new, nb,(int)ft_strlen(nb));
+		new[(int)ft_strlen(nb)] = '.';
+	}
+	else
+	{
+		if (nb[i] == '.')
+		{
+			new = malloc(ft_strlen(nb) - 1);
+			new = ft_strncpy(new, nb, ft_strlen(nb) - 1);
+		}
+		else
+			new = ft_strdup(nb);
+	}
+	ft_putstr(new);
+	free(new);
+}
 
 char	*which_double(va_list *argp, int prec, int *sign, short fls)
 {

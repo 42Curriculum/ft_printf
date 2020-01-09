@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:07:52 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:26:32 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 15:45:02 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void	get_flags(char *c, short *flags, int (*wi_prec)[2], int i)
 	(*flags & 0b0000100000000000) ? (p_l += 1) : (p_l = 0);
 	while (++i < 13)
 	{
-		if ((*c > '0' && *c <= '9') || ((*c == '0') && ft_isdigit(*(c - 1))))
+		if ((*c > '0' && *c <= '9') || ((*c == '0') && (ft_isdigit(*(c - 1)) || p_l == 1)))
 		{
+			((*wi_prec)[p_l] == -1) ? ((*wi_prec)[p_l] = 0) : (i += 0);
 			(*wi_prec)[p_l] *= 10;
 			(*wi_prec)[p_l] += *c - '0';
 			return ;
@@ -114,7 +115,7 @@ int		read_chars(char *str, va_list *argp, int num, int *ret)
 
 	i = 0;
 	wi_prec[0] = 0;
-	wi_prec[1] = 0;
+	wi_prec[1] = -1;
 	flags = 0;
 	while (str[i] && (conv = get_conversion(str[i])) == -1)
 	{

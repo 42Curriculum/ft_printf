@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:47:21 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 22:38:59 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:08:59 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	conv_s(va_list *argp, short flags, int prec[])
 		ft_putstr("(null)");
 		return (6);
 	}
-	size = ft_strlen(str);
+	(prec[1] == -1) ? (size = ft_strlen(str)) : (size = prec[1]);
 	if (prec[0] > size)
 		(prec[0] = prec[0] - size);
 	else
@@ -31,7 +31,8 @@ int	conv_s(va_list *argp, short flags, int prec[])
 	size += prec[0];
 	p = ft_strnew((size));
 	p = ft_memset(p, ' ', size);
-	p = ft_strncpy(p, str, (int)ft_strlen(str));
+	//p = ft_better_strjoin(p, str);
+    ft_strncpy(p + prec[0], str, (prec[1] == -1) ? (ft_strlen(str)) : (prec[1]));	
 	(1 & flags) ? fill_right(&p, prec[0],0, flags) : fill_left(&p, prec[0], flags);
 	ft_putstr(p);
 	free(p);

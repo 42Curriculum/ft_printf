@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 23:37:19 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/07 14:09:44 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/08 16:15:15 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,16 @@ char	*reallocate(char *str, int prec, int u_len)
 	i = 0;
 	while (str[i] == '0')
 		i++;
+	if (str[i] == '.')
+		u_len++;
 	new = ft_strnew(u_len - i + prec);
-	new = ft_strncpy(new, str + i, u_len - i + prec);
+	if (str[i] == '.')
+	{
+		ft_strncpy(new + 1, str + i, u_len - i + prec - 1);
+		new[0] = '0';
+	}
+	else
+		new = ft_strncpy(new, str + i, u_len - i + prec - 1);
 	return (new);
 }
 
@@ -67,10 +75,10 @@ char	*calc_precison(long long precision, char *str)
 	i++;
 	if (i == (int)ft_strlen(str))
 		return (reallocate(str, precision, 0));
-	if (precision == 0)
+	if (precision == -1)
 		precision = 6;
 	if (str[i + precision] >= '5')
-		ft_str_add(&str, 1, i + precision);
+		(precision == 0) ? ft_str_add(&str, 1, i + precision - 1) : ft_str_add(&str, 1, i + precision);
 	new = reallocate(str, precision, i);
 	return (new);
 }
