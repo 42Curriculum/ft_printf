@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 05:47:21 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/08 17:50:06 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/09 15:47:56 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	conv_d(va_list *argp, short fs, int pr[])
 	int		s;
 
 	s = 0;
-	pr = 0;
 	nb = signed_cast(argp, fs, 10);
 	(nb[0] == '-') ? (s = 1) : (s += 0);
 	(nb[0] == '-') ? (nb[0] = ' ') : (nb[0] += 0);

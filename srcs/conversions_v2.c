@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:41:29 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/08 17:52:05 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/09 15:48:24 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	conv_f(va_list *argp, short fls, int pr[])
 	if (!(nb = which_double(argp, pr[1], &s, fls)))
 		return (0);
 	size = ft_strlen(nb);
-	pr = 0;
 	if ((fls & FSPA || fls & FPOS) && s == 0)
 		size += 1;
 	(pr[0] > size) ? (pr[0] = pr[0] - size) : (pr[0] += 0);

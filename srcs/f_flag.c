@@ -6,7 +6,7 @@
 /*   By: jjosephi <jjosephi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 23:37:19 by jjosephi          #+#    #+#             */
-/*   Updated: 2020/01/08 17:32:58 by jjosephi         ###   ########.fr       */
+/*   Updated: 2020/01/09 16:04:31 by jjosephi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ char	*calc_precison(long long p, char *str)
 		return (reallocate(str, p, 0));
 	if (p == -1)
 		p = 6;
-	if (str[i + p] >= '5')
+	(p > 0) ? (p += 1) : (p = 0); 
+	if (str[i + p - 1] >= '5')
 		(p == 0) ? ft_str_add(&str, 1, i + p - 1) : ft_str_add(&str, 1, i + p);
 	new = reallocate(str, p, i);
 	return (new);
