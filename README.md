@@ -21,4 +21,8 @@ h | hh | L | ll | - | + | 0 | . | *| [space] | # |
 
 ## Notes
 
-Unfortunately, I was young and stupid when I made this implementation. It does not use a struct to pass data around and as such is very very messy and does multiple calls to write. One way to fix this would be to first of all, use a struct and second use a linked list to store all the string data and print everything at the end or, if we wanted to be fast we could use a static array, although that would limit the length of the output, but it can be somewhat compensated by 1) having a big enough array size and / or 2) actually allocating a big enough array once we've determined that the static array would be too small.
+Unfortunately, I was young and stupid when I made this implementation. It does not use a struct to pass data around and as such is very very messy and does multiple calls to write.
+
+One way to fix this would be to first of all, use a struct and second use a linked list to store all the string data and print everything at the end or, if we wanted to be fast we could use a static array, although that would limit the length of the output, but it can be somewhat compensated by 1) having a big enough array size and / or 2) actually allocating a big enough array once we've determined that the static array would be too small.
+
+I plan to make a better printf sometime in the future
